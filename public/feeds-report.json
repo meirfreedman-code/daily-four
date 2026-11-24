@@ -1,0 +1,381 @@
+{
+  "checkedAt": "2026-11-24T20:21:56.356Z",
+  "results": [
+    {
+      "sourceId": "ynet",
+      "name": "ynet",
+      "url": "https://www.ynet.co.il/Integration/StoryRss2.xml",
+      "ok": true,
+      "itemCount": 30,
+      "recentCount": 30,
+      "ms": 623,
+      "httpStatus": 200,
+      "newestAt": "2026-11-24T20:19:20.000Z"
+    },
+    {
+      "sourceId": "ynet-world",
+      "name": "ynet – חדשות בעולם",
+      "url": "https://www.ynet.co.il/Integration/StoryRss1854.xml",
+      "ok": true,
+      "itemCount": 30,
+      "recentCount": 30,
+      "ms": 618,
+      "httpStatus": 200,
+      "newestAt": "2026-11-24T20:14:40.000Z"
+    },
+    {
+      "sourceId": "walla",
+      "name": "וואלה",
+      "url": "https://rss.walla.co.il/feed/1",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 906,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "n12",
+      "name": "N12",
+      "url": "https://www.mako.co.il/rss/news-israel.xml",
+      "ok": true,
+      "itemCount": 20,
+      "recentCount": 4,
+      "ms": 639,
+      "httpStatus": 200,
+      "newestAt": "2026-11-24T17:31:00.000Z"
+    },
+    {
+      "sourceId": "maariv",
+      "name": "מעריב",
+      "url": "https://www.maariv.co.il/Rss/RssChadashot",
+      "ok": true,
+      "itemCount": 20,
+      "recentCount": 20,
+      "ms": 2717,
+      "httpStatus": 200,
+      "newestAt": "2026-11-24T20:19:12.000Z"
+    },
+    {
+      "sourceId": "kan",
+      "name": "כאן חדשות",
+      "url": "https://www.kan.org.il/rss/",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 445,
+      "httpStatus": 403,
+      "error": "HTTP 403"
+    },
+    {
+      "sourceId": "israelhayom",
+      "name": "ישראל היום",
+      "url": "https://www.israelhayom.co.il/rss.xml",
+      "ok": true,
+      "itemCount": 100,
+      "recentCount": 100,
+      "ms": 413,
+      "httpStatus": 200,
+      "newestAt": "2026-11-24T20:06:23.000Z"
+    },
+    {
+      "sourceId": "makorrishon",
+      "name": "מקור ראשון",
+      "url": "https://www.makorrishon.co.il/feed/",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 2537,
+      "httpStatus": 403,
+      "error": "HTTP 403"
+    },
+    {
+      "sourceId": "srugim",
+      "name": "סרוגים",
+      "url": "https://www.srugim.co.il/feed",
+      "ok": true,
+      "itemCount": 50,
+      "recentCount": 50,
+      "ms": 1878,
+      "httpStatus": 200,
+      "newestAt": "2026-11-24T20:16:20.000Z"
+    },
+    {
+      "sourceId": "kikar",
+      "name": "כיכר השבת",
+      "url": "https://www.kikar.co.il/feed",
+      "ok": true,
+      "itemCount": 49,
+      "recentCount": 49,
+      "ms": 2719,
+      "httpStatus": 200,
+      "newestAt": "2026-11-24T20:15:42.000Z"
+    },
+    {
+      "sourceId": "bhol",
+      "name": "בחדרי חרדים",
+      "url": "https://www.bhol.co.il/rss/",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 1636,
+      "httpStatus": 403,
+      "error": "HTTP 403"
+    },
+    {
+      "sourceId": "haaretz",
+      "name": "הארץ",
+      "url": "https://www.haaretz.co.il/srv/rss---feedly",
+      "ok": true,
+      "itemCount": 100,
+      "recentCount": 36,
+      "ms": 321,
+      "httpStatus": 200,
+      "newestAt": "2026-11-24T19:51:21.000Z"
+    },
+    {
+      "sourceId": "mekomit",
+      "name": "שיחה מקומית",
+      "url": "https://www.mekomit.co.il/feed/",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 1192,
+      "httpStatus": 403,
+      "error": "HTTP 403"
+    },
+    {
+      "sourceId": "zman",
+      "name": "זמן ישראל",
+      "url": "https://www.zman.co.il/feed/",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 349,
+      "httpStatus": 403,
+      "error": "HTTP 403"
+    },
+    {
+      "sourceId": "globes",
+      "name": "גלובס",
+      "url": "https://www.globes.co.il/webservice/rss/rssfeeder.asmx/FeederNode?iID=2",
+      "ok": true,
+      "itemCount": 15,
+      "recentCount": 15,
+      "ms": 430,
+      "httpStatus": 200,
+      "newestAt": "2026-11-24T20:10:00.000Z"
+    },
+    {
+      "sourceId": "calcalist",
+      "name": "כלכליסט",
+      "url": "https://www.calcalist.co.il/GeneralRSS/0,16335,L-8,00.xml",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 1099,
+      "httpStatus": 404,
+      "error": "HTTP 404"
+    },
+    {
+      "sourceId": "themarker",
+      "name": "דה-מרקר",
+      "url": "https://www.themarker.com/srv/tm-all-articles",
+      "ok": true,
+      "itemCount": 100,
+      "recentCount": 56,
+      "ms": 679,
+      "httpStatus": 200,
+      "newestAt": "2026-11-24T18:07:48.000Z"
+    },
+    {
+      "sourceId": "bbc-world",
+      "name": "BBC News",
+      "url": "https://feeds.bbci.co.uk/news/world/rss.xml",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 26,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "reuters",
+      "name": "Reuters (דרך Google News)",
+      "url": "https://news.google.com/rss/search?q=site:reuters.com+when:1d&hl=en-US&gl=US&ceid=US:en",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 276,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "wsj-world",
+      "name": "Wall Street Journal",
+      "url": "https://feeds.a.dj.com/rss/RSSWorldNews.xml",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 622,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "ft-world",
+      "name": "Financial Times",
+      "url": "https://www.ft.com/world?format=rss",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 277,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "economist",
+      "name": "The Economist",
+      "url": "https://www.economist.com/international/rss.xml",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 255,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "telegraph",
+      "name": "The Telegraph",
+      "url": "https://www.telegraph.co.uk/news/rss.xml",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 276,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "spectator",
+      "name": "The Spectator",
+      "url": "https://www.spectator.co.uk/feed",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 255,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "thefp",
+      "name": "The Free Press",
+      "url": "https://www.thefp.com/feed",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 28,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "fox-world",
+      "name": "Fox News",
+      "url": "https://moxie.foxnews.com/google-publisher/world.xml",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 289,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "nyt-world",
+      "name": "New York Times",
+      "url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 32,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "guardian-world",
+      "name": "The Guardian",
+      "url": "https://www.theguardian.com/world/rss",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 279,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "foreignaffairs",
+      "name": "Foreign Affairs",
+      "url": "https://www.foreignaffairs.com/rss.xml",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 30,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "foreignpolicy",
+      "name": "Foreign Policy",
+      "url": "https://foreignpolicy.com/feed/",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 29,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "jpost",
+      "name": "Jerusalem Post",
+      "url": "https://www.jpost.com/rss/rssfeedsfrontpage.aspx",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 452,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "lefigaro",
+      "name": "Le Figaro",
+      "url": "https://www.lefigaro.fr/rss/figaro_international.xml",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 280,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "welt",
+      "name": "Die Welt",
+      "url": "https://www.welt.de/feeds/section/politik/ausland.rss",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 25,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "nzz",
+      "name": "NZZ",
+      "url": "https://www.nzz.ch/international.rss",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 276,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "alarabiya",
+      "name": "אל-ערבייה",
+      "url": "https://www.alarabiya.net/feed/rss2/ar.xml",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 28,
+      "error": "fetch failed"
+    },
+    {
+      "sourceId": "aawsat",
+      "name": "אל-שרק אל-אווסט",
+      "url": "https://english.aawsat.com/feed",
+      "ok": false,
+      "itemCount": 0,
+      "recentCount": 0,
+      "ms": 277,
+      "error": "fetch failed"
+    }
+  ]
+}

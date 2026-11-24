@@ -1,0 +1,27 @@
+{
+  "_comment": "הגדרות כלליות. שעת הריצה עצמה נקבעת ב-.github/workflows/daily.yml (cron, בשעון UTC).",
+  "timezone": "Asia/Jerusalem",
+  "storiesPerDay": 4,
+  "lookbackHours": 30,
+  "maxItemsPerSource": 25,
+  "selection": {
+    "maxPerTopic": 2,
+    "maxPerRegion": 2,
+    "minInternational": 2,
+    "excludeTopics": ["sport", "gossip", "entertainment", "weather"],
+    "multiSourceBonus": 1.0,
+    "minImportance": 4
+  },
+  "models": {
+    "_comment": "שמות מודלים של Gemini. אם מודל מוחלף או מוסר, משנים כאן בלבד.",
+    "triage": "gemini-2.5-flash-lite",
+    "summarize": "gemini-2.5-flash",
+    "analyze": "gemini-2.5-flash"
+  },
+  "analysis": {
+    "minWords": 250,
+    "maxWords": 400,
+    "deepMaxWords": 900,
+    "label": "ניתוח שנוצר ב-AI — כלי למחשבה, לא אמת מוחלטת"
+  }
+}

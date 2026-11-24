@@ -1,0 +1,52 @@
+name: daily-pipeline
+
+on:
+  schedule:
+    # 03:47 UTC = 05:47 בחורף / 06:47 בקיץ (שעון ישראל). לשינוי השעה: לערוך כאן.
+    # הדקה אינה עגולה בכוונה: ריצות ב-:00 מתעכבות לעיתים ב-GitHub.
+    - cron: "47 3 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-pipeline
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Run pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: npm run pipeline
+      - name: Commit data
+        run: |
+          git config user.name "daily-four-bot"
+          git config user.email "daily-four-bot@users.noreply.github.com"
+          git add public
+          git diff --cached --quiet || git commit -m "data: $(date -u +%F)"
+          git push
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+  # אם הריצה נכשלת, GitHub שולח מייל אוטומטי לבעל ה-repo
