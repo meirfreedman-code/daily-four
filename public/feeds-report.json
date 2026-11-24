@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T20:21:56.356Z",
+  "checkedAt": "2026-11-24T20:47:51.860Z",
   "results": [
     {
       "sourceId": "ynet",
@@ -7,8 +7,8 @@
       "url": "https://www.ynet.co.il/Integration/StoryRss2.xml",
       "ok": true,
       "itemCount": 30,
-      "recentCount": 30,
-      "ms": 623,
+      "recentCount": 25,
+      "ms": 560,
       "httpStatus": 200,
       "newestAt": "2026-11-24T20:19:20.000Z"
     },
@@ -18,10 +18,10 @@
       "url": "https://www.ynet.co.il/Integration/StoryRss1854.xml",
       "ok": true,
       "itemCount": 30,
-      "recentCount": 30,
-      "ms": 618,
+      "recentCount": 25,
+      "ms": 622,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T20:14:40.000Z"
+      "newestAt": "2026-11-24T20:42:20.000Z"
     },
     {
       "sourceId": "walla",
@@ -30,7 +30,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 906,
+      "ms": 1055,
       "error": "fetch failed"
     },
     {
@@ -40,7 +40,7 @@
       "ok": true,
       "itemCount": 20,
       "recentCount": 4,
-      "ms": 639,
+      "ms": 680,
       "httpStatus": 200,
       "newestAt": "2026-11-24T17:31:00.000Z"
     },
@@ -51,9 +51,9 @@
       "ok": true,
       "itemCount": 20,
       "recentCount": 20,
-      "ms": 2717,
+      "ms": 1126,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T20:19:12.000Z"
+      "newestAt": "2026-11-24T20:46:35.000Z"
     },
     {
       "sourceId": "kan",
@@ -62,7 +62,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 445,
+      "ms": 531,
       "httpStatus": 403,
       "error": "HTTP 403"
     },
@@ -72,10 +72,10 @@
       "url": "https://www.israelhayom.co.il/rss.xml",
       "ok": true,
       "itemCount": 100,
-      "recentCount": 100,
-      "ms": 413,
+      "recentCount": 25,
+      "ms": 445,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T20:06:23.000Z"
+      "newestAt": "2026-11-24T20:22:42.000Z"
     },
     {
       "sourceId": "makorrishon",
@@ -84,7 +84,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 2537,
+      "ms": 1070,
       "httpStatus": 403,
       "error": "HTTP 403"
     },
@@ -94,10 +94,10 @@
       "url": "https://www.srugim.co.il/feed",
       "ok": true,
       "itemCount": 50,
-      "recentCount": 50,
-      "ms": 1878,
+      "recentCount": 25,
+      "ms": 556,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T20:16:20.000Z"
+      "newestAt": "2026-11-24T20:35:57.000Z"
     },
     {
       "sourceId": "kikar",
@@ -105,8 +105,8 @@
       "url": "https://www.kikar.co.il/feed",
       "ok": true,
       "itemCount": 49,
-      "recentCount": 49,
-      "ms": 2719,
+      "recentCount": 25,
+      "ms": 476,
       "httpStatus": 200,
       "newestAt": "2026-11-24T20:15:42.000Z"
     },
@@ -117,7 +117,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 1636,
+      "ms": 440,
       "httpStatus": 403,
       "error": "HTTP 403"
     },
@@ -127,8 +127,8 @@
       "url": "https://www.haaretz.co.il/srv/rss---feedly",
       "ok": true,
       "itemCount": 100,
-      "recentCount": 36,
-      "ms": 321,
+      "recentCount": 25,
+      "ms": 338,
       "httpStatus": 200,
       "newestAt": "2026-11-24T19:51:21.000Z"
     },
@@ -139,7 +139,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 1192,
+      "ms": 446,
       "httpStatus": 403,
       "error": "HTTP 403"
     },
@@ -150,7 +150,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 349,
+      "ms": 432,
       "httpStatus": 403,
       "error": "HTTP 403"
     },
@@ -161,7 +161,7 @@
       "ok": true,
       "itemCount": 15,
       "recentCount": 15,
-      "ms": 430,
+      "ms": 756,
       "httpStatus": 200,
       "newestAt": "2026-11-24T20:10:00.000Z"
     },
@@ -172,7 +172,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 1099,
+      "ms": 1114,
       "httpStatus": 404,
       "error": "HTTP 404"
     },
@@ -182,8 +182,8 @@
       "url": "https://www.themarker.com/srv/tm-all-articles",
       "ok": true,
       "itemCount": 100,
-      "recentCount": 56,
-      "ms": 679,
+      "recentCount": 25,
+      "ms": 254,
       "httpStatus": 200,
       "newestAt": "2026-11-24T18:07:48.000Z"
     },
@@ -194,7 +194,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 26,
+      "ms": 25,
       "error": "fetch failed"
     },
     {
@@ -204,7 +204,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 276,
+      "ms": 26,
       "error": "fetch failed"
     },
     {
@@ -214,7 +214,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 622,
+      "ms": 30,
       "error": "fetch failed"
     },
     {
@@ -224,7 +224,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 277,
+      "ms": 27,
       "error": "fetch failed"
     },
     {
@@ -234,7 +234,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 255,
+      "ms": 250,
       "error": "fetch failed"
     },
     {
@@ -254,7 +254,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 255,
+      "ms": 278,
       "error": "fetch failed"
     },
     {
@@ -264,7 +264,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 28,
+      "ms": 267,
       "error": "fetch failed"
     },
     {
@@ -274,7 +274,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 289,
+      "ms": 26,
       "error": "fetch failed"
     },
     {
@@ -284,7 +284,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 32,
+      "ms": 25,
       "error": "fetch failed"
     },
     {
@@ -304,7 +304,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 30,
+      "ms": 276,
       "error": "fetch failed"
     },
     {
@@ -314,7 +314,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 29,
+      "ms": 278,
       "error": "fetch failed"
     },
     {
@@ -324,7 +324,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 452,
+      "ms": 236,
       "error": "fetch failed"
     },
     {
@@ -334,7 +334,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 280,
+      "ms": 28,
       "error": "fetch failed"
     },
     {
@@ -344,7 +344,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 25,
+      "ms": 27,
       "error": "fetch failed"
     },
     {
@@ -354,7 +354,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 276,
+      "ms": 279,
       "error": "fetch failed"
     },
     {
@@ -364,7 +364,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 28,
+      "ms": 27,
       "error": "fetch failed"
     },
     {
@@ -374,7 +374,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 277,
+      "ms": 278,
       "error": "fetch failed"
     }
   ]

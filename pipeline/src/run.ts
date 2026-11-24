@@ -3,7 +3,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  DAY_SCHEMA_VERSION, DayFile, DayIndex, LensesFile, SourcesFile, makeGemini,
+  DAY_SCHEMA_VERSION, DayFile, DayIndex, LensesFile, SourcesFile, makeGemini, withFallback, modelList,
   type LlmFn, type SourceConfig,
 } from "@daily-four/shared";
 import { fetchAll, type FeedItem, type FeedResult } from "./feeds.js";
@@ -42,16 +42,19 @@ export async function runPipeline(opts: { llm: LlmFn; now?: Date; fetchImpl?: ty
   log(`   ${ok}/${results.length} פידים עובדים, ${raw.length} פריטים, ${items.length} אחרי הסרת כפילויות`);
   if (items.length < 10) throw new Error("נאספו פחות מ-10 פריטים. כנראה בעיית רשת, הצינור נעצר");
 
-  log(`🧮 מקבץ ומדרג (${config.models.triage})...`);
-  const t = await triage(opts.llm, config.models.triage, items, srcMap);
+  const using = (models: string | string[]): LlmFn => (c) => withFallback(opts.llm, modelList(models))(c);
+  log(`🧮 מקבץ ומדרג (${modelList(config.models.triage).join(" → ")})...`);
+  const t = await triage(using(config.models.triage), "", items, srcMap);
+  log(`   מודל: ${t.usage.model}`);
   log(`   ${t.events.length} אירועים`);
 
   const rules: SelectionRules = { count: config.storiesPerDay, ...config.selection };
   const chosen = selectStories(scoreEvents(t.events, itemMap, srcMap, rules), rules);
   if (!chosen.length) throw new Error("לא נמצאו אירועים מתאימים");
 
-  log(`✍️  כותב ${chosen.length} ידיעות (${config.models.summarize})...`);
-  const w = await writeStories(opts.llm, config.models.summarize, date, chosen, itemMap, srcMap, lenses);
+  log(`✍️  כותב ${chosen.length} ידיעות (${modelList(config.models.summarize).join(" → ")})...`);
+  const w = await writeStories(using(config.models.summarize), "", date, chosen, itemMap, srcMap, lenses);
+  log(`   מודל: ${w.usage.model}`);
 
   const day = DayFile.parse({
     schemaVersion: DAY_SCHEMA_VERSION,
@@ -70,8 +73,8 @@ export async function runPipeline(opts: { llm: LlmFn; now?: Date; fetchImpl?: ty
   await writeFeedReport(outDir, results, now);
 
   const usage = {
-    triage: { in: t.usage.inputTokens, out: t.usage.outputTokens },
-    write: { in: w.usage.inputTokens, out: w.usage.outputTokens },
+    triage: { model: t.usage.model, in: t.usage.inputTokens, out: t.usage.outputTokens },
+    write: { model: w.usage.model, in: w.usage.inputTokens, out: w.usage.outputTokens },
   };
   log(`✅ נכתב public/data/${date}.json. טוקנים: ${JSON.stringify(usage)}`);
   return { day, results, usage, events: t.events, chosen };

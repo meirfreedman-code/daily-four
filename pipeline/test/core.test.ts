@@ -4,6 +4,7 @@ import { DayFile, LensesFile, SourcesFile, analysisCacheKey } from "@daily-four/
 import { dedupItems, normalizeUrl, titleTokens, jaccard } from "../src/dedup.js";
 import { parseFeed, cleanText } from "../src/feeds.js";
 import { sanitizeEvents } from "../src/triage.js";
+import { onePerOutlet } from "../src/write.js";
 import { scoreEvents, selectStories, type SelectionRules, type ScoredEvent } from "../src/select.js";
 
 const item = (sourceId: string, title: string, url: string, description = "") => ({ sourceId, title, url, description });
@@ -166,5 +167,13 @@ describe("קבצי הגדרות ו-schema", () => {
   it("מפתח cache לא תלוי בסדר המישורים", () => {
     expect(analysisCacheKey("2026-11-24-1", ["legal", "historical"], "normal")).toBe(analysisCacheKey("2026-11-24-1", ["historical", "legal", "legal"], "normal"));
     expect(analysisCacheKey("2026-11-24-1", ["legal"], "normal")).not.toBe(analysisCacheKey("2026-11-24-1", ["legal"], "deep"));
+  });
+});
+
+describe("רשימת מקורות לידיעה", () => {
+  it("רשומה אחת לכל כלי תקשורת", () => {
+    const mk = (id: string, sourceId: string) => ({ id, sourceId, title: id, description: "", url: `https://x/${id}` });
+    const out = onePerOutlet([mk("1", "ynet"), mk("2", "ynet-world"), mk("3", "maariv"), mk("4", "maariv"), mk("5", "kikar")]);
+    expect(out.map((i) => i.id)).toEqual(["1", "3", "5"]);
   });
 });

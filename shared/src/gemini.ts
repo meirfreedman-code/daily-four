@@ -75,3 +75,27 @@ export function parseJsonLoose<T = unknown>(text: string): T {
   const t = text.trim().replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/, "");
   return JSON.parse(t) as T;
 }
+
+/**
+ * עוטף LlmFn ברשימת מודלים לפי סדר עדיפות: אם מודל עמוס (503) או שנגמרה המכסה (429),
+ * עוברים לבא בתור. call.model מתעלמים ממנו.
+ */
+export function withFallback(llm: LlmFn, models: string[]): (call: Omit<LlmCall, "model">) => Promise<LlmResult> {
+  if (!models.length) throw new Error("רשימת מודלים ריקה");
+  return async (call) => {
+    let last: unknown;
+    for (const model of models) {
+      try {
+        return await llm({ ...call, model });
+      } catch (e) {
+        last = e;
+        if (!(e instanceof LlmError) || !e.retryable) throw e;
+      }
+    }
+    throw last;
+  };
+}
+
+export function modelList(v: string | string[]): string[] {
+  return Array.isArray(v) ? v : [v];
+}

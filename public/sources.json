@@ -1,0 +1,290 @@
+[
+  {
+    "id": "ynet",
+    "name": "ynet",
+    "lean": "מרכזי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "ynet-world",
+    "name": "ynet – חדשות בעולם",
+    "lean": "מרכזי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "walla",
+    "name": "וואלה",
+    "lean": "מרכזי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "n12",
+    "name": "N12",
+    "lean": "מרכזי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "maariv",
+    "name": "מעריב",
+    "lean": "מרכז-ימין",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "kan",
+    "name": "כאן חדשות",
+    "lean": "שידור ציבורי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "israelhayom",
+    "name": "ישראל היום",
+    "lean": "ימין",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "makorrishon",
+    "name": "מקור ראשון",
+    "lean": "ימין / דתי-לאומי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "srugim",
+    "name": "סרוגים",
+    "lean": "דתי-לאומי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "kikar",
+    "name": "כיכר השבת",
+    "lean": "חרדי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "bhol",
+    "name": "בחדרי חרדים",
+    "lean": "חרדי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "haaretz",
+    "name": "הארץ",
+    "lean": "שמאל-מרכז",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "mekomit",
+    "name": "שיחה מקומית",
+    "lean": "שמאל",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "zman",
+    "name": "זמן ישראל",
+    "lean": "עצמאי / מרכז",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "globes",
+    "name": "גלובס",
+    "lean": "כלכלי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "calcalist",
+    "name": "כלכליסט",
+    "lean": "כלכלי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "themarker",
+    "name": "דה-מרקר",
+    "lean": "כלכלי",
+    "lang": "he",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "bbc-world",
+    "name": "BBC News",
+    "lean": "מרכז / ממסדי (בריטניה)",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "reuters",
+    "name": "Reuters (דרך Google News)",
+    "lean": "סוכנות ידיעות / מרכז",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "wsj-world",
+    "name": "Wall Street Journal",
+    "lean": "מרכז-ימין (ארה\"ב)",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "ft-world",
+    "name": "Financial Times",
+    "lean": "מרכז / כלכלי (בריטניה)",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "economist",
+    "name": "The Economist",
+    "lean": "מרכז ליברלי-כלכלי",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "telegraph",
+    "name": "The Telegraph",
+    "lean": "מרכז-ימין (בריטניה)",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "spectator",
+    "name": "The Spectator",
+    "lean": "ימין שמרני (בריטניה)",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "thefp",
+    "name": "The Free Press",
+    "lean": "מרכז-ימין עצמאי (ארה\"ב)",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "fox-world",
+    "name": "Fox News",
+    "lean": "ימין (ארה\"ב)",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "nyt-world",
+    "name": "New York Times",
+    "lean": "שמאל-מרכז (ארה\"ב)",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "guardian-world",
+    "name": "The Guardian",
+    "lean": "שמאל-מרכז (בריטניה)",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "foreignaffairs",
+    "name": "Foreign Affairs",
+    "lean": "ממסדי / מחקרי (ארה\"ב)",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "foreignpolicy",
+    "name": "Foreign Policy",
+    "lean": "ממסדי / מרכז (ארה\"ב)",
+    "lang": "en",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "jpost",
+    "name": "Jerusalem Post",
+    "lean": "מרכז-ימין",
+    "lang": "en",
+    "region": "israel",
+    "active": true
+  },
+  {
+    "id": "lefigaro",
+    "name": "Le Figaro",
+    "lean": "מרכז-ימין (צרפת)",
+    "lang": "fr",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "welt",
+    "name": "Die Welt",
+    "lean": "מרכז-ימין (גרמניה)",
+    "lang": "de",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "nzz",
+    "name": "NZZ",
+    "lean": "מרכז-ימין ליברלי (שווייץ)",
+    "lang": "de",
+    "region": "international",
+    "active": true
+  },
+  {
+    "id": "alarabiya",
+    "name": "אל-ערבייה",
+    "lean": "סעודי / ממסדי",
+    "lang": "ar",
+    "region": "regional",
+    "active": true
+  },
+  {
+    "id": "aawsat",
+    "name": "אל-שרק אל-אווסט",
+    "lean": "סעודי / ממסדי",
+    "lang": "en",
+    "region": "regional",
+    "active": true
+  }
+]

@@ -13,10 +13,10 @@
     "minImportance": 4
   },
   "models": {
-    "_comment": "שמות מודלים של Gemini. אם מודל מוחלף או מוסר, משנים כאן בלבד.",
-    "triage": "gemini-2.5-flash-lite",
-    "summarize": "gemini-2.5-flash",
-    "analyze": "gemini-2.5-flash"
+    "_comment": "רשימת מודלים לפי סדר עדיפות. אם הראשון עמוס או שנגמרה המכסה, עוברים לבא. נבדק מול Google ב-24.11.2026: מודלי Pro ו-Gemini 4 בתשלום בלבד.",
+    "triage": ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"],
+    "summarize": ["gemini-3.8-flash", "gemini-3.5-flash"],
+    "analyze": ["gemini-3.8-flash", "gemini-3.5-flash"]
   },
   "analysis": {
     "minWords": 250,

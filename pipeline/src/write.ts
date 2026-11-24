@@ -51,15 +51,15 @@ const SYSTEM = `אתה עורך חדשות שכותב בעברית רהוטה, �
 - השתמש רק בעובדות שמופיעות בכותרות ובתקצירים שקיבלת. אל תוסיף עובדות, מספרים, תאריכים או ציטוטים שאינם שם. אם יש סתירה בין מקורות, ציין זאת.
 - נסח מחדש במילים שלך. אל תעתיק משפטים מהמקורות.
 - headline: כותרת עניינית, עד 12 מילים, בלי סימני קריאה ובלי קליקבייט.
-- summary: 2-3 משפטים.
+- summary: 2-3 משפטים על האירוע המרכזי בלבד. אם יש בקבוצה פריטים שלא קשורים לאירוע המרכזי, התעלם מהם.
 - whyItMatters: משפט אחד שמסביר את המשמעות לטווח ארוך.
 - tag: תג תחום קצר בעברית (מילה או שתיים), למשל "ביטחון", "משפט", "כלכלה", "דיפלומטיה", "חברה", "דת ומדינה".
-- lensSuggestions: 2-4 מישורי ניתוח מתוך הרשימה שקיבלת (lensId מדויק), שהכי יאירו את הידיעה. לכל אחד שאלת פתיחה אחת חדה וספציפית לידיעה, שמראה מה המישור יגלה. למשל: "איזה תקדים היסטורי הכי דומה לזה, ובמה הוא שונה?". המישור "media-framing" מתאים רק כשיש כמה מקורות.`;
+- lensSuggestions: בדרך כלל 3 (לפחות 2, לכל היותר 4) מישורי ניתוח מתוך הרשימה שקיבלת (lensId מדויק), שהכי יאירו את הידיעה. לכל אחד שאלת פתיחה אחת חדה וספציפית לידיעה, שמראה מה המישור יגלה. למשל: "איזה תקדים היסטורי הכי דומה לזה, ובמה הוא שונה?". המישור "media-framing" מתאים רק כשיש כמה מקורות.`;
 
 export function buildWritePrompt(events: ScoredEvent[], items: Map<string, FeedItem>, sources: Map<string, SourceConfig>, lenses: Lens[]): string {
   const lensList = lenses.map((l) => `- ${l.id}: ${l.name} – ${l.description}`).join("\n");
   const blocks = events.map((e, idx) => {
-    const lines = e.itemIds.map((id) => {
+    const lines = e.itemIds.slice(0, 10).map((id) => {
       const it = items.get(id)!;
       const s = sources.get(it.sourceId);
       return `  * [${s?.name} | ${s?.lean} | ${s?.lang}] ${it.title}${it.description ? ` — ${it.description}` : ""}`;
@@ -77,15 +77,14 @@ export async function writeStories(
   items: Map<string, FeedItem>,
   sources: Map<string, SourceConfig>,
   lenses: Lens[],
-): Promise<{ stories: Story[]; usage: { inputTokens: number; outputTokens: number } }> {
+): Promise<{ stories: Story[]; usage: { model: string; inputTokens: number; outputTokens: number } }> {
   const res = await llm({ model, system: SYSTEM, prompt: buildWritePrompt(events, items, sources, lenses), schema, temperature: 0.3 });
   const parsed = Written.parse(parseJsonLoose(res.text));
   const lensIds = new Set(lenses.map((l) => l.id));
   const stories: Story[] = events.map((e, idx) => {
     const w = parsed.stories.find((s) => s.index === idx);
     if (!w) throw new Error(`המודל לא כתב את ידיעה ${idx}`);
-    const storySources = e.itemIds.map((id) => {
-      const it = items.get(id)!;
+    const storySources = onePerOutlet(e.itemIds.map((id) => items.get(id)!)).map((it) => {
       const s = sources.get(it.sourceId)!;
       return { sourceId: s.id, name: s.name, lean: s.lean, lang: s.lang, title: it.title, url: it.url, publishedAt: it.publishedAt };
     });
@@ -108,4 +107,18 @@ export async function writeStories(
     };
   });
   return { stories, usage: res };
+}
+
+/** פריט אחד לכל כלי תקשורת (ynet ו-ynet עולם = כלי אחד), לפי סדר ההופעה, עד max */
+export function onePerOutlet(list: FeedItem[], max = 10): FeedItem[] {
+  const seen = new Set<string>();
+  const out: FeedItem[] = [];
+  for (const it of list) {
+    const outlet = it.sourceId.split("-")[0];
+    if (seen.has(outlet)) continue;
+    seen.add(outlet);
+    out.push(it);
+    if (out.length >= max) break;
+  }
+  return out;
 }
