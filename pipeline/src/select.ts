@@ -11,6 +11,10 @@ export interface SelectionRules {
   excludeTopics: string[];
   multiSourceBonus: number;
   minImportance: number;
+  /** תוספת/הפחתה לציון לפי נושא (מ-config) */
+  topicAdjust?: Record<string, number | string>;
+  /** לכל היותר כמה אירועים מאותו קו עלילה (ברירת מחדל 1) */
+  maxPerThread?: number;
 }
 
 export interface ScoredEvent extends TriageEvent {
@@ -41,7 +45,8 @@ export function scoreEvents(
       const weights = e.itemIds.map((id) => sources.get(items.get(id)?.sourceId ?? "")?.weight ?? 1);
       const avgWeight = weights.reduce((a, b) => a + b, 0) / Math.max(1, weights.length);
       // בונוס לוגריתמי לריבוי מקורות: 2 מקורות = +1, 4 = +2 ...
-      const score = e.importance + rules.multiSourceBonus * Math.log2(Math.max(1, n)) + (avgWeight - 1);
+      const adj = Number(rules.topicAdjust?.[e.topic] ?? 0) || 0;
+      const score = e.importance + rules.multiSourceBonus * Math.log2(Math.max(1, n)) + (avgWeight - 1) + adj;
       return { ...e, score, outletCount: n };
     })
     .sort((a, b) => b.score - a.score);
@@ -56,13 +61,16 @@ export function selectStories(scored: ScoredEvent[], rules: SelectionRules): Sco
   const chosen: ScoredEvent[] = [];
   const topicCount = new Map<string, number>();
   const regionCount = new Map<string, number>();
+  const threadCount = new Map<string, number>();
   const canAdd = (e: ScoredEvent) =>
+    (!e.thread || (threadCount.get(e.thread) ?? 0) < (rules.maxPerThread ?? 1)) &&
     (topicCount.get(e.topic) ?? 0) < rules.maxPerTopic &&
     (e.region === "international" || (regionCount.get(e.region) ?? 0) < rules.maxPerRegion);
   const add = (e: ScoredEvent) => {
     chosen.push(e);
     topicCount.set(e.topic, (topicCount.get(e.topic) ?? 0) + 1);
     regionCount.set(e.region, (regionCount.get(e.region) ?? 0) + 1);
+    if (e.thread) threadCount.set(e.thread, (threadCount.get(e.thread) ?? 0) + 1);
   };
 
   // שלב א: הבינלאומיות הטובות ביותר עד המכסה המינימלית

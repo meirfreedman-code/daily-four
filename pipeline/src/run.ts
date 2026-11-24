@@ -49,7 +49,12 @@ export async function runPipeline(opts: { llm: LlmFn; now?: Date; fetchImpl?: ty
   log(`   ${t.events.length} אירועים`);
 
   const rules: SelectionRules = { count: config.storiesPerDay, ...config.selection };
-  const chosen = selectStories(scoreEvents(t.events, itemMap, srcMap, rules), rules);
+  const scored = scoreEvents(t.events, itemMap, srcMap, rules);
+  const chosen = selectStories(scored, rules);
+  // קובץ אבחון מקומי (לא מתפרסם): כל האירועים, הציון ומה נבחר
+  await writeFile(path.join(ROOT, "pipeline/.last-run.json"), JSON.stringify({
+    date, events: t.events.map((e) => ({ ...e, score: scored.find((s) => s.label === e.label)?.score ?? null, chosen: chosen.some((c) => c.label === e.label), titles: e.itemIds.map((id) => itemMap.get(id)?.title) })),
+  }, null, 2)).catch(() => {});
   if (!chosen.length) throw new Error("לא נמצאו אירועים מתאימים");
 
   log(`✍️  כותב ${chosen.length} ידיעות (${modelList(config.models.summarize).join(" → ")})...`);

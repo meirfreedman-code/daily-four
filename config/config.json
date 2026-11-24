@@ -8,15 +8,45 @@
     "maxPerTopic": 2,
     "maxPerRegion": 2,
     "minInternational": 2,
-    "excludeTopics": ["sport", "gossip", "entertainment", "weather"],
+    "excludeTopics": [
+      "sport",
+      "gossip",
+      "entertainment",
+      "weather"
+    ],
     "multiSourceBonus": 1.0,
-    "minImportance": 4
+    "minImportance": 4,
+    "topicAdjust": {
+      "_comment": "תוספת או הפחתה לציון לפי סוג נושא. ערך שלילי מוריד עדיפות.",
+      "political-maneuvering": -3,
+      "policy-governance": 1,
+      "infrastructure-planning": 1.5,
+      "bureaucracy": 1.5,
+      "local-government": 1,
+      "economy": 0.5,
+      "markets": -3
+    },
+    "maxPerThread": 1
   },
   "models": {
     "_comment": "רשימת מודלים לפי סדר עדיפות. אם הראשון עמוס או שנגמרה המכסה, עוברים לבא. נבדק מול Google ב-24.11.2026: מודלי Pro ו-Gemini 4 בתשלום בלבד.",
-    "triage": ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"],
-    "summarize": ["gemini-3.8-flash", "gemini-3.5-flash"],
-    "analyze": ["gemini-3.8-flash", "gemini-3.5-flash"]
+    "triage": [
+      "gemini-3.5-flash-lite",
+      "gemini-3.1-flash-lite",
+      "gemini-3.5-flash"
+    ],
+    "summarize": [
+      "gemini-3.8-flash",
+      "gemini-3.7-flash",
+      "gemini-3.6-flash",
+      "gemini-3.5-flash"
+    ],
+    "analyze": [
+      "gemini-3.8-flash",
+      "gemini-3.7-flash",
+      "gemini-3.6-flash",
+      "gemini-3.5-flash"
+    ]
   },
   "analysis": {
     "minWords": 250,

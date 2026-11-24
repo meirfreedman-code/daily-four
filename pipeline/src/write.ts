@@ -12,6 +12,7 @@ const Written = z.object({
       whyItMatters: z.string(),
       tag: z.string(),
       lensSuggestions: z.array(z.object({ lensId: z.string(), question: z.string() })),
+      deepSuggestion: z.object({ lensId: z.string(), question: z.string() }).optional(),
     }),
   ),
 });
@@ -37,8 +38,13 @@ const schema = {
               required: ["lensId", "question"],
             },
           },
+          deepSuggestion: {
+            type: "object",
+            properties: { lensId: { type: "string" }, question: { type: "string" } },
+            required: ["lensId", "question"],
+          },
         },
-        required: ["index", "headline", "summary", "whyItMatters", "tag", "lensSuggestions"],
+        required: ["index", "headline", "summary", "whyItMatters", "tag", "lensSuggestions", "deepSuggestion"],
       },
     },
   },
@@ -54,10 +60,12 @@ const SYSTEM = `אתה עורך חדשות שכותב בעברית רהוטה, �
 - summary: 2-3 משפטים על האירוע המרכזי בלבד. אם יש בקבוצה פריטים שלא קשורים לאירוע המרכזי, התעלם מהם.
 - whyItMatters: משפט אחד שמסביר את המשמעות לטווח ארוך.
 - tag: תג תחום קצר בעברית (מילה או שתיים), למשל "ביטחון", "משפט", "כלכלה", "דיפלומטיה", "חברה", "דת ומדינה".
-- lensSuggestions: בדרך כלל 3 (לפחות 2, לכל היותר 4) מישורי ניתוח מתוך הרשימה שקיבלת (lensId מדויק), שהכי יאירו את הידיעה. לכל אחד שאלת פתיחה אחת חדה וספציפית לידיעה, שמראה מה המישור יגלה. למשל: "איזה תקדים היסטורי הכי דומה לזה, ובמה הוא שונה?". המישור "media-framing" מתאים רק כשיש כמה מקורות.`;
+- lensSuggestions: 2-3 מישורי ניתוח מהקבוצה "מרכזיים" (lensId מדויק), שהכי יאירו את הידיעה. לכל אחד שאלת פתיחה אחת חדה וספציפית לידיעה, שמראה מה המישור יגלה. למשל: "איזה תקדים היסטורי הכי דומה לזה, ובמה הוא שונה?". המישור "media-framing" מתאים רק כשיש כמה מקורות.
+- deepSuggestion: חובה. מישור אחד מהקבוצה "עמוקים", שמציע קריאה לא מובנת מאליה של הידיעה. בחר את המישור שיוצר את החיבור המפתיע והפורה ביותר, גם אם הידיעה נראית במבט ראשון טכנית או מקומית (למשל: אישור תוכנית בנייה דרך שאלת הריבונות אצל הובס, או החלטה עירונית דרך המתח ההיסטורי בין קהילה למדינה בעולם היהודי). השאלה צריכה לנסח את החיבור במפורש ולעורר סקרנות, ולא להיות כללית.`;
 
 export function buildWritePrompt(events: ScoredEvent[], items: Map<string, FeedItem>, sources: Map<string, SourceConfig>, lenses: Lens[]): string {
-  const lensList = lenses.map((l) => `- ${l.id}: ${l.name} – ${l.description}`).join("\n");
+  const fmt = (g: string) => lenses.filter((l) => (l.group ?? "core") === g).map((l) => `- ${l.id}: ${l.name} – ${l.description}`).join("\n");
+  const lensList = `מרכזיים:\n${fmt("core")}\n\nעמוקים:\n${fmt("deep")}`;
   const blocks = events.map((e, idx) => {
     const lines = e.itemIds.slice(0, 10).map((id) => {
       const it = items.get(id)!;
@@ -88,10 +96,9 @@ export async function writeStories(
       const s = sources.get(it.sourceId)!;
       return { sourceId: s.id, name: s.name, lean: s.lean, lang: s.lang, title: it.title, url: it.url, publishedAt: it.publishedAt };
     });
-    let suggestions = w.lensSuggestions.filter((l) => lensIds.has(l.lensId));
-    suggestions = suggestions.filter((l, i) => suggestions.findIndex((x) => x.lensId === l.lensId) === i).slice(0, 4);
-    if (e.outletCount < 2) suggestions = suggestions.filter((l) => l.lensId !== "media-framing");
+    const suggestions = mergeSuggestions(w.lensSuggestions, w.deepSuggestion, lenses, e.outletCount);
     if (suggestions.length < 2) throw new Error(`ידיעה ${idx}: פחות משתי הצעות מישור תקינות`);
+    if (!suggestions.some((l) => l.kind === "deep")) console.warn(`⚠️  ידיעה ${idx}: המודל לא הציע מישור עמוק תקין`);
     return {
       id: `${date}-${idx + 1}`,
       rank: idx + 1,
@@ -120,5 +127,29 @@ export function onePerOutlet(list: FeedItem[], max = 10): FeedItem[] {
     out.push(it);
     if (out.length >= max) break;
   }
+  return out;
+}
+
+type Raw = { lensId: string; question: string };
+
+/**
+ * מאחד הצעות: עד 3 מרכזיות + אחת עמוקה (תמיד אחרונה).
+ * מסנן מזהים לא קיימים וכפולים, ומסיר "מסגור תקשורתי" כשיש מקור יחיד.
+ */
+export function mergeSuggestions(core: Raw[], deep: Raw | undefined, lenses: Lens[], outletCount: number) {
+  const group = new Map(lenses.map((l) => [l.id, l.group ?? "core"]));
+  const seen = new Set<string>();
+  const ok = (l: Raw) => group.has(l.lensId) && !seen.has(l.lensId) && !(outletCount < 2 && l.lensId === "media-framing");
+  const out: { lensId: string; question: string; kind: "core" | "deep" }[] = [];
+  const deepOk = deep && group.get(deep.lensId) === "deep" ? deep : undefined;
+  for (const l of core) {
+    if (out.length >= 3) break;
+    if (deepOk && l.lensId === deepOk.lensId) continue;
+    if (ok(l)) {
+      seen.add(l.lensId);
+      out.push({ ...l, kind: group.get(l.lensId) === "deep" ? "deep" : "core" });
+    }
+  }
+  if (deepOk && ok(deepOk)) out.push({ ...deepOk, kind: "deep" });
   return out;
 }

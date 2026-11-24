@@ -4,7 +4,7 @@ import { DayFile, LensesFile, SourcesFile, analysisCacheKey } from "@daily-four/
 import { dedupItems, normalizeUrl, titleTokens, jaccard } from "../src/dedup.js";
 import { parseFeed, cleanText } from "../src/feeds.js";
 import { sanitizeEvents } from "../src/triage.js";
-import { onePerOutlet } from "../src/write.js";
+import { onePerOutlet, mergeSuggestions } from "../src/write.js";
 import { scoreEvents, selectStories, type SelectionRules, type ScoredEvent } from "../src/select.js";
 
 const item = (sourceId: string, title: string, url: string, description = "") => ({ sourceId, title, url, description });
@@ -115,6 +115,16 @@ describe("בחירת 4 ידיעות", () => {
     expect(out.filter((e) => e.region === "israel").length).toBeLessThanOrEqual(2);
   });
 
+  it("לא יותר מאירוע אחד מאותו קו עלילה", () => {
+    const withThread = (e: ScoredEvent, thread: string) => ({ ...e, thread });
+    const out = selectStories(
+      [withThread(ev("a", "security", "regional", 10), "iran"), withThread(ev("b", "diplomacy", "regional", 9.9), "iran"),
+       withThread(ev("c", "law", "israel", 7), "x"), withThread(ev("d", "economy", "international", 6), "y"), withThread(ev("e", "health", "international", 5), "z")],
+      rules,
+    );
+    expect(out.map((e) => e.label)).toEqual(["a", "c", "d", "e"]);
+  });
+
   it("ממלא 4 גם כשאין מספיק מגוון", () => {
     const out = selectStories([ev("a", "security", "israel", 9), ev("b", "security", "israel", 8), ev("c", "security", "israel", 7), ev("d", "security", "israel", 6)], rules);
     expect(out).toHaveLength(4);
@@ -175,5 +185,27 @@ describe("רשימת מקורות לידיעה", () => {
     const mk = (id: string, sourceId: string) => ({ id, sourceId, title: id, description: "", url: `https://x/${id}` });
     const out = onePerOutlet([mk("1", "ynet"), mk("2", "ynet-world"), mk("3", "maariv"), mk("4", "maariv"), mk("5", "kikar")]);
     expect(out.map((i) => i.id)).toEqual(["1", "3", "5"]);
+  });
+});
+
+describe("הצעות מישורי ניתוח", () => {
+  const lenses = [
+    { id: "historical", name: "h", description: "", prompt: "xxxxxxxxxxxx", group: "core" as const },
+    { id: "legal", name: "l", description: "", prompt: "xxxxxxxxxxxx", group: "core" as const },
+    { id: "media-framing", name: "m", description: "", prompt: "xxxxxxxxxxxx", group: "core" as const },
+    { id: "sociological", name: "s", description: "", prompt: "xxxxxxxxxxxx", group: "core" as const },
+    { id: "political-philosophy", name: "p", description: "", prompt: "xxxxxxxxxxxx", group: "deep" as const },
+  ];
+  const q = (lensId: string) => ({ lensId, question: "שאלה?" });
+
+  it("עד 3 מרכזיות + עמוקה אחת בסוף", () => {
+    const out = mergeSuggestions([q("historical"), q("legal"), q("sociological"), q("media-framing")], q("political-philosophy"), lenses, 3);
+    expect(out.map((l) => l.lensId)).toEqual(["historical", "legal", "sociological", "political-philosophy"]);
+    expect(out.at(-1)?.kind).toBe("deep");
+  });
+
+  it("מתעלם מעמוקה שאינה מקבוצת deep, ממזהים לא קיימים וממסגור תקשורתי במקור יחיד", () => {
+    const out = mergeSuggestions([q("nope"), q("media-framing"), q("legal"), q("legal")], q("historical"), lenses, 1);
+    expect(out.map((l) => l.lensId)).toEqual(["legal"]);
   });
 });

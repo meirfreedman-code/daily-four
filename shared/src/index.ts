@@ -31,6 +31,8 @@ export const Lens = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   name: z.string().min(1),
   icon: z.string().optional(),
+  /** core = מישורים מרכזיים; deep = מישורים לא מובנים מאליהם (בכל ידיעה מוצע לפחות אחד) */
+  group: z.enum(["core", "deep"]).default("core"),
   description: z.string(),
   prompt: z.string().min(10),
 });
@@ -51,6 +53,7 @@ export type StorySource = z.infer<typeof StorySource>;
 export const LensSuggestion = z.object({
   lensId: z.string(),
   question: z.string().min(5),
+  kind: z.enum(["core", "deep"]).default("core"),
 });
 export type LensSuggestion = z.infer<typeof LensSuggestion>;
 
@@ -65,7 +68,7 @@ export const Story = z.object({
   region: Region,
   singleSource: z.boolean(),
   sources: z.array(StorySource).min(1),
-  lensSuggestions: z.array(LensSuggestion).min(2).max(4),
+  lensSuggestions: z.array(LensSuggestion).min(2).max(5),
 });
 export type Story = z.infer<typeof Story>;
 
