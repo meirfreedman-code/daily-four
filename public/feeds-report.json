@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T21:19:05.991Z",
+  "checkedAt": "2026-11-25T06:17:43.769Z",
   "results": [
     {
       "sourceId": "ynet",
@@ -8,9 +8,9 @@
       "ok": true,
       "itemCount": 30,
       "recentCount": 25,
-      "ms": 463,
+      "ms": 534,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T20:19:20.000Z"
+      "newestAt": "2026-11-25T05:57:36.000Z"
     },
     {
       "sourceId": "ynet-world",
@@ -19,9 +19,9 @@
       "ok": true,
       "itemCount": 30,
       "recentCount": 25,
-      "ms": 531,
+      "ms": 473,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T21:05:38.000Z"
+      "newestAt": "2026-11-25T05:41:36.000Z"
     },
     {
       "sourceId": "walla",
@@ -30,7 +30,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 1047,
+      "ms": 1005,
       "error": "fetch failed"
     },
     {
@@ -40,7 +40,7 @@
       "ok": true,
       "itemCount": 20,
       "recentCount": 4,
-      "ms": 650,
+      "ms": 657,
       "httpStatus": 200,
       "newestAt": "2026-11-24T17:31:00.000Z"
     },
@@ -51,9 +51,9 @@
       "ok": true,
       "itemCount": 20,
       "recentCount": 20,
-      "ms": 1490,
+      "ms": 1178,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T20:46:35.000Z"
+      "newestAt": "2026-11-25T06:17:18.000Z"
     },
     {
       "sourceId": "kan",
@@ -62,7 +62,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 410,
+      "ms": 404,
       "httpStatus": 403,
       "error": "HTTP 403"
     },
@@ -73,9 +73,9 @@
       "ok": true,
       "itemCount": 100,
       "recentCount": 25,
-      "ms": 394,
+      "ms": 585,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T21:08:43.000Z"
+      "newestAt": "2026-11-25T06:04:32.000Z"
     },
     {
       "sourceId": "makorrishon",
@@ -84,7 +84,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 1014,
+      "ms": 1113,
       "httpStatus": 403,
       "error": "HTTP 403"
     },
@@ -95,9 +95,9 @@
       "ok": true,
       "itemCount": 50,
       "recentCount": 25,
-      "ms": 481,
+      "ms": 540,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T20:35:57.000Z"
+      "newestAt": "2026-11-25T06:16:39.000Z"
     },
     {
       "sourceId": "kikar",
@@ -106,9 +106,9 @@
       "ok": true,
       "itemCount": 49,
       "recentCount": 25,
-      "ms": 855,
+      "ms": 685,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T21:08:48.000Z"
+      "newestAt": "2026-11-25T05:39:28.000Z"
     },
     {
       "sourceId": "bhol",
@@ -117,7 +117,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 397,
+      "ms": 530,
       "httpStatus": 403,
       "error": "HTTP 403"
     },
@@ -128,9 +128,9 @@
       "ok": true,
       "itemCount": 100,
       "recentCount": 25,
-      "ms": 568,
+      "ms": 474,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T19:51:21.000Z"
+      "newestAt": "2026-11-25T06:00:49.000Z"
     },
     {
       "sourceId": "mekomit",
@@ -139,7 +139,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 211,
+      "ms": 422,
       "httpStatus": 403,
       "error": "HTTP 403"
     },
@@ -150,7 +150,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 203,
+      "ms": 365,
       "httpStatus": 403,
       "error": "HTTP 403"
     },
@@ -161,9 +161,9 @@
       "ok": true,
       "itemCount": 15,
       "recentCount": 15,
-      "ms": 409,
+      "ms": 494,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T21:00:00.000Z"
+      "newestAt": "2026-11-25T06:09:00.000Z"
     },
     {
       "sourceId": "calcalist",
@@ -172,7 +172,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 468,
+      "ms": 800,
       "httpStatus": 404,
       "error": "HTTP 404"
     },
@@ -183,9 +183,9 @@
       "ok": true,
       "itemCount": 100,
       "recentCount": 25,
-      "ms": 534,
+      "ms": 397,
       "httpStatus": 200,
-      "newestAt": "2026-11-24T18:07:48.000Z"
+      "newestAt": "2026-11-25T06:08:59.000Z"
     },
     {
       "sourceId": "bbc-world",
@@ -194,7 +194,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 200,
+      "ms": 27,
       "error": "fetch failed"
     },
     {
@@ -204,7 +204,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 216,
+      "ms": 28,
       "error": "fetch failed"
     },
     {
@@ -214,7 +214,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 237,
+      "ms": 26,
       "error": "fetch failed"
     },
     {
@@ -224,7 +224,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 243,
+      "ms": 25,
       "error": "fetch failed"
     },
     {
@@ -234,7 +234,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 28,
+      "ms": 277,
       "error": "fetch failed"
     },
     {
@@ -244,7 +244,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 26,
+      "ms": 258,
       "error": "fetch failed"
     },
     {
@@ -254,7 +254,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 33,
+      "ms": 275,
       "error": "fetch failed"
     },
     {
@@ -264,7 +264,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 25,
+      "ms": 247,
       "error": "fetch failed"
     },
     {
@@ -274,7 +274,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 281,
+      "ms": 27,
       "error": "fetch failed"
     },
     {
@@ -284,7 +284,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 276,
+      "ms": 277,
       "error": "fetch failed"
     },
     {
@@ -294,7 +294,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 25,
+      "ms": 276,
       "error": "fetch failed"
     },
     {
@@ -304,7 +304,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 24,
+      "ms": 28,
       "error": "fetch failed"
     },
     {
@@ -314,7 +314,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 277,
+      "ms": 226,
       "error": "fetch failed"
     },
     {
@@ -324,7 +324,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 263,
+      "ms": 276,
       "error": "fetch failed"
     },
     {
@@ -334,7 +334,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 27,
+      "ms": 29,
       "error": "fetch failed"
     },
     {
@@ -344,7 +344,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 26,
+      "ms": 30,
       "error": "fetch failed"
     },
     {
@@ -354,7 +354,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 278,
+      "ms": 29,
       "error": "fetch failed"
     },
     {
@@ -364,7 +364,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 231,
+      "ms": 279,
       "error": "fetch failed"
     },
     {
@@ -374,7 +374,7 @@
       "ok": false,
       "itemCount": 0,
       "recentCount": 0,
-      "ms": 281,
+      "ms": 26,
       "error": "fetch failed"
     }
   ]

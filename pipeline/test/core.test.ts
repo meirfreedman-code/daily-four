@@ -125,6 +125,15 @@ describe("בחירת 4 ידיעות", () => {
     expect(out.map((e) => e.label)).toEqual(["a", "c", "d", "e"]);
   });
 
+  it("לפחות ידיעת מדיניות אחת גם כשהציון שלה נמוך", () => {
+    const r = { ...rules, minPolicy: 1, policyTopics: ["bureaucracy", "local-government"] };
+    const out = selectStories(
+      [ev("a", "security", "regional", 10), ev("b", "law", "israel", 9), ev("c", "economy", "international", 8), ev("d", "diplomacy", "international", 7), ev("p", "bureaucracy", "israel", 5)],
+      r,
+    );
+    expect(out.map((e) => e.label).sort()).toEqual(["a", "c", "d", "p"]);
+  });
+
   it("ממלא 4 גם כשאין מספיק מגוון", () => {
     const out = selectStories([ev("a", "security", "israel", 9), ev("b", "security", "israel", 8), ev("c", "security", "israel", 7), ev("d", "security", "israel", 6)], rules);
     expect(out).toHaveLength(4);

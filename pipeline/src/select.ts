@@ -15,6 +15,9 @@ export interface SelectionRules {
   topicAdjust?: Record<string, number | string>;
   /** לכל היותר כמה אירועים מאותו קו עלילה (ברירת מחדל 1) */
   maxPerThread?: number;
+  /** לפחות כמה ידיעות מסוגי policyTopics (מדיניות, תשתיות, בירוקרטיה, רשות מקומית) */
+  minPolicy?: number;
+  policyTopics?: string[];
 }
 
 export interface ScoredEvent extends TriageEvent {
@@ -77,6 +80,13 @@ export function selectStories(scored: ScoredEvent[], rules: SelectionRules): Sco
   for (const e of scored) {
     if (chosen.filter((c) => c.region === "international").length >= rules.minInternational) break;
     if (e.region === "international" && canAdd(e)) add(e);
+  }
+  // שלב א2: ידיעות מדיניות עד המכסה המינימלית
+  const policy = new Set(rules.policyTopics ?? []);
+  for (const e of scored) {
+    if (chosen.filter((c) => policy.has(c.topic)).length >= (rules.minPolicy ?? 0)) break;
+    if (chosen.length >= rules.count) break;
+    if (policy.has(e.topic) && !chosen.includes(e) && canAdd(e)) add(e);
   }
   // שלב ב: השאר לפי ציון
   for (const e of scored) {

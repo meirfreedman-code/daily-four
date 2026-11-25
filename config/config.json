@@ -26,7 +26,14 @@
       "economy": 0.5,
       "markets": -3
     },
-    "maxPerThread": 1
+    "maxPerThread": 1,
+    "minPolicy": 1,
+    "policyTopics": [
+      "policy-governance",
+      "infrastructure-planning",
+      "bureaucracy",
+      "local-government"
+    ]
   },
   "models": {
     "_comment": "רשימת מודלים לפי סדר עדיפות. אם הראשון עמוס או שנגמרה המכסה, עוברים לבא. נבדק מול Google ב-24.11.2026: מודלי Pro ו-Gemini 4 בתשלום בלבד.",
