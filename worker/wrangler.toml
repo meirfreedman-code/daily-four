@@ -5,11 +5,11 @@ compatibility_date = "2026-11-01"
 
 [vars]
 # יעודכן לכתובת ה-GitHub Pages שלך
-DATA_BASE_URL = "https://USERNAME.github.io/daily-four"
+DATA_BASE_URL = "https://meirfreedman-code.github.io/daily-four"
 ANALYZE_MODELS = "gemini-3.8-flash,gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash"
 MAX_PER_DAY = "15"
 MAX_PER_MINUTE = "4"
 
 [[kv_namespaces]]
 binding = "CACHE"
-id = "REPLACE_WITH_KV_ID"
+id = "ec26bf126ecf423fb1a33d987eaa2ddc"

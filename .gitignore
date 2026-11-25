@@ -5,3 +5,4 @@ node_modules/
 dist/
 *.log
 pipeline/.last-run.json
+.app-token
