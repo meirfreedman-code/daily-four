@@ -34,7 +34,7 @@ export function makeGemini(apiKey: string, fetchImpl: typeof fetch = fetch, maxR
       contents: [{ role: "user", parts: [{ text: call.prompt }] }],
       generationConfig: {
         temperature: call.temperature ?? 0.4,
-        maxOutputTokens: call.maxOutputTokens ?? 8192,
+        maxOutputTokens: call.maxOutputTokens ?? 32000,
         ...(call.schema ? { responseMimeType: "application/json", responseSchema: call.schema } : {}),
       },
     };
@@ -58,6 +58,10 @@ export function makeGemini(apiKey: string, fetchImpl: typeof fetch = fetch, maxR
       if (!text) {
         lastErr = new LlmError(`Gemini החזיר תשובה ריקה (finishReason=${cand?.finishReason ?? "?"})`, 200, true);
         continue;
+      }
+      // תשובה שנקטעה באמצע (למשל כי "החשיבה" של המודל צרכה את מכסת הטוקנים) היא כשל, לא תוצאה
+      if (cand?.finishReason === "MAX_TOKENS") {
+        throw new LlmError(`התשובה נקטעה (MAX_TOKENS) במודל ${call.model}`, 200, true);
       }
       return {
         text,

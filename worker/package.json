@@ -1,0 +1,13 @@
+{
+  "name": "@daily-four/worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "deploy": "wrangler deploy",
+    "local": "tsx scripts/local.ts"
+  },
+  "dependencies": { "@daily-four/shared": "*", "zod": "^4.1.12" },
+  "devDependencies": { "tsx": "^4.20.0", "vitest": "^5.1.0", "wrangler": "^4.168.0", "@cloudflare/workers-types": "^5.20261125.1" }
+}

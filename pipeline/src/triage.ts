@@ -89,7 +89,7 @@ export function sanitizeEvents(raw: unknown, validIds: Set<string>): TriageEvent
 }
 
 export async function triage(llm: LlmFn, model: string, items: FeedItem[], sources: Map<string, SourceConfig>) {
-  const res = await llm({ model, system: SYSTEM, prompt: buildTriagePrompt(items, sources), schema, temperature: 0.1, maxOutputTokens: 12000 });
+  const res = await llm({ model, system: SYSTEM, prompt: buildTriagePrompt(items, sources), schema, temperature: 0.1, maxOutputTokens: 32000 });
   const events = sanitizeEvents(parseJsonLoose(res.text), new Set(items.map((i) => i.id)));
   return { events, usage: res };
 }
