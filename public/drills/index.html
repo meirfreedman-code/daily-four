@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>לוח תרגילים</title>
+<meta name="description" content="משרטטים תרגיל כדורסל באצבע ומקבלים שרטוט נקי, הסבר בעברית ואנימציה.">
+<meta name="theme-color" content="#16213e">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="תרגילים">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <button id="btnList" class="icon" aria-label="התרגילים שלי">☰</button>
+  <input id="name" class="name" aria-label="שם התרגיל" maxlength="60" autocomplete="off">
+  <button id="btnHelp" class="icon" aria-label="עזרה">?</button>
+</header>
+
+<nav id="phases" class="phases" aria-label="שלבים"></nav>
+
+<main class="stage" id="stage">
+  <canvas id="court" aria-label="מגרש לציור"></canvas>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</main>
+
+<div class="controls">
+  <div id="toolbar" class="toolbar">
+    <div class="row">
+      <div class="seg" role="group" aria-label="כלי">
+        <button id="toolDraw" class="on">✏️ ציור</button>
+        <button id="toolEdit">✋ הזזה</button>
+      </div>
+      <button id="btnUndo" aria-label="בטל">↶ בטל</button>
+      <button id="btnRedo" aria-label="חזור">↷</button>
+    </div>
+    <div class="row">
+      <button id="btnView" class="primary">✨ נקה</button>
+      <button id="btnPlay">▶ הפעל</button>
+      <button id="btnExport">⤴ ייצוא</button>
+    </div>
+  </div>
+  <div id="playbar" class="toolbar" hidden>
+    <div class="row">
+      <button id="btnPause" class="primary">⏸ עצור</button>
+      <button id="btnRestart">⏮ מההתחלה</button>
+      <button id="btnStop">✕ סגור</button>
+    </div>
+    <div class="row"><div id="playInfo" class="playinfo"></div></div>
+  </div>
+  <div id="sheet" class="sheet" hidden></div>
+</div>
+
+<section id="explain" class="explain" aria-label="הסבר"></section>
+
+<section id="list" class="list" hidden>
+  <header class="top">
+    <button id="btnListClose" class="icon" aria-label="חזרה">→</button>
+    <h1>התרגילים שלי</h1>
+    <span class="icon"></span>
+  </header>
+  <div class="list-actions">
+    <button id="btnNew" class="primary">＋ תרגיל חדש</button>
+    <button id="btnImport">📥 ייבוא קובץ</button>
+    <input id="fileImport" type="file" accept=".json,application/json" hidden>
+  </div>
+  <ul id="listItems"></ul>
+</section>
+
+<dialog id="help" class="help">
+  <h2>איך משרטטים</h2>
+  <ul class="legend">
+    <li><svg viewBox="0 0 60 40"><circle cx="30" cy="20" r="14"/></svg><span><b>עיגול</b> = שחקן התקפה. אחרי הציור בוחרים מספר.</span></li>
+    <li><svg viewBox="0 0 60 40"><path d="M18 8 L42 32 M42 8 L18 32" class="red"/></svg><span><b>X</b> = מגן (בשני קווים או בקו אחד).</span></li>
+    <li><svg viewBox="0 0 60 40"><path d="M6 20 H54"/></svg><span><b>קו רציף</b> = תנועה</span></li>
+    <li><svg viewBox="0 0 60 40"><path d="M6 20 H54" stroke-dasharray="8 7"/></svg><span><b>קו מקווקו</b> (כמה קווים קצרים) = מסירה</span></li>
+    <li><svg viewBox="0 0 60 40"><path d="M6 20 l6 -8 l6 16 l6 -16 l6 16 l6 -16 l6 16 l6 -8 H54"/></svg><span><b>זיגזג</b> = כדרור</span></li>
+    <li><svg viewBox="0 0 60 40"><path d="M6 20 H48 M48 8 V32"/></svg><span><b>קו עם פס ניצב בסוף</b> = חסימה</span></li>
+  </ul>
+  <p>מתחילים כל קו <b>ליד השחקן</b> שמבצע אותו. מסירה מסיימים ליד המקבל.</p>
+  <p><b>שלב הבא</b> — מחלק את התרגיל לשלבים. בכל שלב השחקנים עומדים איפה שסיימו בשלב הקודם.</p>
+  <p><b>טעות בזיהוי?</b> מקישים על הקו או על השחקן ובוחרים מחדש. במצב <b>✋ הזזה</b> גוררים שחקנים.</p>
+  <p><b>נקה</b> — מציג שרטוט מסודר. לחיצה נוספת מחזירה לקשקוש המקורי.</p>
+  <h3>הוספה למסך הבית</h3>
+  <p>אנדרואיד (Chrome): תפריט ⋮ ← "הוספה למסך הבית". אייפון (Safari): כפתור השיתוף ← "הוספה למסך הבית". אחרי הפתיחה הראשונה האפליקציה עובדת גם בלי אינטרנט.</p>
+  <p class="muted">התרגילים נשמרים רק בטלפון הזה. לגיבוי: ייצוא ← קובץ תרגיל.</p>
+  <form method="dialog"><button class="primary wide">הבנתי</button></form>
+</dialog>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

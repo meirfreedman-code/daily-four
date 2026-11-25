@@ -1,10 +1,15 @@
 {
   "name": "daily-four",
   "private": true,
-  "workspaces": ["shared", "pipeline", "worker"],
+  "workspaces": [
+    "shared",
+    "pipeline",
+    "worker"
+  ],
   "scripts": {
     "test": "npm run test --workspaces --if-present",
     "pipeline": "npm run start -w pipeline",
-    "feeds:check": "npm run feeds -w pipeline"
+    "feeds:check": "npm run feeds -w pipeline",
+    "test:drills": "node --test \"drills-test/*.test.js\""
   }
 }

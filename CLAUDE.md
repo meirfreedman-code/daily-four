@@ -16,3 +16,9 @@ npm workspaces: `shared/` (zod schema, לקוח Gemini REST), `pipeline/` (צי�
 ## בדיקות
 `npm test` (vitest). לפני commit: `npx -p typescript@5.9 tsc --noEmit -p pipeline`.
 בסביבת הענן של Claude: `NODE_USE_ENV_PROXY=1`, ו-`GEMINI_API_KEY=proxy-injected` (ה-proxy מזריק את המפתח בכותרת x-goog-api-key).
+
+## אפליקציית התרגילים (`public/drills/`)
+פרויקט נפרד באותו repo: PWA סטטי לשרטוט תרגילי כדורסל. JavaScript רגיל (ES modules) בלי build ובלי תלויות, בלי AI ובלי שרת.
+- מתפרסם ל-`https://<user>.github.io/daily-four/drills/` דרך `.github/workflows/drills-pages.yml` (push ל-main). מעלה את כל `public` כדי לא למחוק את קבצי החדשות.
+- מודל התרגיל (JSON) ב-`js/model.js`. זיהוי צורות ב-`js/recognize.js`, הסבר ב-`js/explain.js` (שתיהן פונקציות טהורות).
+- בדיקות: `npm run test:drills`. שינוי ברשימת הקבצים => להוסיף ל-`FILES` ב-`sw.js` ולהעלות `VERSION`. כל שינוי בקבצים => להעלות `VERSION` כדי שהטלפון יתעדכן.

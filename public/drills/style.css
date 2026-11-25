@@ -1,0 +1,142 @@
+:root {
+  --bg: #f4f1ea;
+  --surface: #ffffff;
+  --text: #16213e;
+  --muted: #5c6478;
+  --border: #d9d3c5;
+  --primary: #16213e;
+  --primary-text: #ffffff;
+  --accent: #e85d04;
+  --on: #06d6a0;
+  --danger: #c1121f;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11151f; --surface: #1c2230; --text: #eef0f5; --muted: #a2a9b8; --border: #333b4d;
+    --primary: #f0c27b; --primary-text: #16213e; --shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11151f; --surface: #1c2230; --text: #eef0f5; --muted: #a2a9b8; --border: #333b4d;
+  --primary: #f0c27b; --primary-text: #16213e; --shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.45 system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  max-width: 640px;
+  margin: 0 auto;
+  padding-bottom: env(safe-area-inset-bottom);
+  overscroll-behavior: none;
+}
+button {
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  min-height: 50px;
+  padding: 0 12px;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+}
+button:active { transform: scale(0.97); }
+button.primary { background: var(--primary); color: var(--primary-text); border-color: var(--primary); font-weight: 700; }
+button.wide { width: 100%; }
+button[disabled] { opacity: 0.4; }
+
+.top {
+  display: flex; align-items: center; gap: 8px;
+  padding: calc(8px + env(safe-area-inset-top)) 12px 8px;
+}
+.top h1 { flex: 1; margin: 0; font-size: 20px; text-align: center; }
+.icon { width: 50px; min-width: 50px; padding: 0; font-size: 22px; }
+span.icon { display: inline-block; }
+.name {
+  flex: 1; min-width: 0; height: 50px; font: inherit; font-weight: 700; font-size: 19px;
+  color: var(--text); background: transparent; border: 1px solid transparent; border-radius: 12px;
+  padding: 0 10px; text-align: center;
+}
+.name:focus { border-color: var(--border); background: var(--surface); outline: none; }
+
+.phases { display: flex; gap: 6px; padding: 0 12px 8px; overflow-x: auto; scrollbar-width: none; }
+.phases button { min-width: 50px; flex: 0 0 auto; }
+.phases button.on { background: var(--primary); color: var(--primary-text); border-color: var(--primary); font-weight: 700; }
+.phases .add { color: var(--accent); font-weight: 700; }
+
+.stage { position: relative; padding: 0 8px; }
+canvas { display: block; width: 100%; touch-action: none; border-radius: 10px; box-shadow: var(--shadow); }
+.toast {
+  position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+  background: rgba(22, 33, 62, 0.92); color: #fff; padding: 8px 16px; border-radius: 20px;
+  font-size: 16px; pointer-events: none; opacity: 0; transition: opacity 0.2s; white-space: nowrap;
+}
+.toast.show { opacity: 1; }
+
+.controls { position: relative; padding: 10px 12px 0; min-height: 124px; }
+.toolbar .row, .sheet .row { display: flex; gap: 8px; margin-bottom: 8px; }
+.toolbar .row > * { flex: 1; }
+.toolbar[hidden], .sheet[hidden] { display: none; }
+.seg { display: flex; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; flex: 2 !important; }
+.seg button { flex: 1; border: 0; border-radius: 0; }
+.seg button.on { background: var(--primary); color: var(--primary-text); font-weight: 700; }
+.playinfo { text-align: center; color: var(--muted); align-self: center; }
+
+.sheet {
+  position: absolute; inset: 0 0 auto 0; z-index: 5;
+  margin: 0 8px; padding: 10px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; box-shadow: var(--shadow);
+}
+.sheet .title { font-weight: 700; margin: 0 4px 8px; }
+.sheet .row button { flex: 1; min-width: 0; padding: 0 4px; }
+.sheet button.on { background: var(--on); border-color: var(--on); color: #082b22; font-weight: 700; }
+.sheet button.danger { color: var(--danger); }
+.sheet .num { font-size: 22px; font-weight: 700; }
+
+.explain { padding: 6px 16px 28px; }
+.explain h2 { font-size: 18px; margin: 10px 0 6px; }
+.explain p { margin: 4px 0 10px; }
+.explain ol { margin: 0; padding-inline-start: 0; list-style: none; }
+.explain li { padding: 8px 10px; border-radius: 10px; margin-bottom: 4px; }
+.explain li.on { background: var(--surface); box-shadow: var(--shadow); }
+.explain li b { margin-inline-end: 6px; }
+.muted { color: var(--muted); }
+
+.list {
+  position: fixed; inset: 0; z-index: 20; background: var(--bg); overflow-y: auto;
+  max-width: 640px; margin: 0 auto;
+}
+.list[hidden] { display: none; }
+.list-actions { display: flex; gap: 8px; padding: 4px 12px 12px; }
+.list-actions button { flex: 1; }
+.list ul { list-style: none; margin: 0; padding: 0 12px 24px; }
+.list li {
+  display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; margin-bottom: 8px; padding: 6px 6px 6px 12px;
+}
+.list li .open { flex: 1; text-align: right; border: 0; background: transparent; padding: 4px 8px; min-height: 56px; }
+.list li .open small { display: block; color: var(--muted); font-size: 14px; }
+.list li .del { width: 50px; padding: 0; color: var(--danger); }
+.list .empty { color: var(--muted); text-align: center; padding: 24px; }
+
+.help {
+  border: 0; border-radius: 16px; padding: 18px; width: min(560px, calc(100vw - 32px));
+  max-height: calc(100vh - 40px); background: var(--surface); color: var(--text); box-shadow: var(--shadow);
+}
+.help::backdrop { background: rgba(0, 0, 0, 0.45); }
+.help h2 { margin: 0 0 10px; }
+.help h3 { margin: 16px 0 4px; font-size: 17px; }
+.help p { margin: 6px 0; }
+.legend { list-style: none; padding: 0; margin: 0 0 8px; }
+.legend li { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
+.legend svg { width: 60px; height: 40px; flex: 0 0 60px; fill: none; stroke: var(--text); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.legend svg .red { stroke: var(--danger); }
+.help form { margin-top: 14px; }
